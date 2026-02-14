@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Be My bestfriend ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+        }
+
+        h1 {
+            margin-top: 100px;
+            color: white;
+            font-size: 40px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            position: absolute;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff0066;
+            color: white;
+            left: 40%;
+            top: 60%;
+        }
+
+        #noBtn {
+            background-color: black;
+            color: white;
+            left: 55%;
+            top: 60%;
+        }
+
+        /* Heart rain */
+        .heart {
+            position: absolute;
+            font-size: 25px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh); opacity: 1; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+
+        /* Popup note */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            font-size: 22px;
+            color: #ff0066;
+            animation: pop 0.8s forwards;
+            text-align: center;
+        }
+
+        @keyframes pop {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            60% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>Will You Be My Bestfriend? ❤️</h1>
+
+<button id="yesBtn" class="btn" onclick="yesClicked()">Yes 💖</button>
+<button id="noBtn" class="btn" onmouseover="moveNo()">No 😜</button>
+
+<script>
+
+let noCount = 0;
+
+function moveNo() {
+    let noBtn = document.getElementById("noBtn");
+    noCount++;
+
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    // After 5 times
+    if (noCount === 5) {
+        noBtn.innerHTML = "Fir soch lo 😌";
+        noBtn.style.backgroundColor = "#ff9900";
+    }
+
+    // After 10 times
+    if (noCount === 10) {
+        noBtn.innerHTML = "Please ek baar aur soch lo baccha 🥺❤️";
+        noBtn.style.backgroundColor = "#ff4d6d";
+        noBtn.style.fontSize = "14px";
+    }
+}
+
+function yesClicked() {
+
+    document.body.innerHTML = "";
+
+    // Heart rain
+    setInterval(createHeart, 200);
+
+    // Popup note
+    let note = document.createElement("div");
+    note.className = "popup";
+    note.innerHTML = `
+        💌 You are not just my best friend, you are my safe place.
+        In a world full of temporary people, you are my permanent comfort.
+        Thank you for understanding my silence,and standing beside me even when I don’t say what I feel.
+        Life feels lighter, happier, and more beautiful because you are in it.
+        No matter where life takes us, I promise our bond will always stay strong.
+        I’m truly lucky to have you. 💛❤️<br><br>
+        I promise to keep you smiling every single day 😊✨<br><br>
+    `;
+    document.body.appendChild(note);
+}
+
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+</script>
+
+</body>
+</html>
